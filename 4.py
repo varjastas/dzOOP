@@ -1,4 +1,52 @@
 import random
+'''
+В классе криттер происходит инициализация каждого существа и управление каждым отдельно.
+В классе зооферма происходит управление всеми сразу и сбор всех криттеров в зооферму
+'''
+class Zooferma:
+    def __init__(self, kol_zver):
+        self.crit_sp = []
+        for i in range(0, kol_zver):
+            name = input('Введите имя зверя')
+            crit_sp.append(Critter(name))
+    def create_new_zver(self):
+        name = input('Ввеите имя зверушки')
+        if (name != '') and (name != ' '):
+            Criter = Critter(name)
+            self.crit_sp.append(Criter)
+        else:
+            print('Имя не может быть пустой строкой')
+    
+    def feed_solo(self):
+        number = int(input('Введите номер зверушки(начиная с 0)'))
+        eat = int(input('Сколько дать есть. 1 = 100г'))
+        self.crit_sp[number].eat(eat)
+
+
+    def feed_all(self):
+        eat = int(input('Сколько дать есть. 1 = 100г'))
+        for i in self.crit_sp:
+            i.eat(eat)
+
+
+    def play_solo(self):
+        number = int(input('Введите номер зверушки(начиная с 0)'))
+        play = int(input('Сколько играть. 1 = 5 мин'))
+        self.crit_sp[number].play(play)
+
+
+    def play_all(self):
+        play = int(input('Сколько играть. 1 = 5 мин'))
+        for i in self.crit_sp:
+            i.play(play)
+
+    def talk_solo(self):
+        number = int(input('Введите номер зверушки(начиная с 0)'))
+        self.crit_sp[number].talk()
+        
+    def talk_all(self):
+        for i in self.crit_sp:
+            i.talk()
 class Critter:
     """Виртуальный питомец"""
     total = 0
@@ -66,12 +114,9 @@ class Critter:
 
 crit_sp = []
 def main():
-    for i in range(0, int(input('Сколько зверушек создатб?'))):
-        crit_name = input("Как вы назовете свою зверюшку?: ")
-        crit = Critter(crit_name)
-        crit_sp.append(crit)
     print(crit_sp)
     choice = None  
+    Volk_v_Circe = Zooferma(int(input('Начальное кол-во зверей'))) 
     while choice != "0":
         print \
         ("""
@@ -79,8 +124,12 @@ def main():
     
         0 - Выйти
         1 - Узнать о самочувствии фермы
-        2 - Покормить ферму
-        3 - Поиграть с фермой
+        2 - Узнать о самочувствии отдельной зверушки
+        3 - Покормить ферму
+        4 - Покормить отдельную зверушку
+        5 - Поиграть с фермой
+        6 - Поиграть с отдельной зверушкой
+        7 - Создать зверушку
         """)
     
         choice = input("Ваш выбор: ")
@@ -90,26 +139,32 @@ def main():
         if choice == "0":
             print("До свидания.")
 
-        # беседа со зверюшкой
+        #Узнать о самочувствии фермы
         elif choice == "1":
-            for i in range(0, len(crit_sp)):
-                crit_sp[i].talk()
+            Volk_v_Circe.talk_all()
 
-        # кормление зверюшки
+        # Узнать о самочувствии отдельной зверушки
         elif choice == "2":
-            eat = int(input('Сколько дать еды(1 = 100 г)' ))
-            print("Мррр...  Спасибо!")
-            for i in crit_sp:
-                
-                i.eat(eat)
-         
-        # игра со зверюшкой
+            Volk_v_Circe.talk_solo()
+
+        #Покормить ферму
         elif choice == "3":
-            play = int(input('Сколько играться(1 = 10 мин)' ))
-            print('Уииии!')
-            for i in crit_sp:
-                
-                i.play(play)
+            Volk_v_Circe.feed_all()
+
+        #Покормить отдельную зверушку
+        elif choice == "4":
+            Volk_v_Circe.feed_solo()
+
+        #Поиграть с фермой
+        elif choice == "5":
+            Volk_v_Circe.play_all()
+        
+        #Поиграть с отдельной зверушкой
+        elif choice == "6":
+            Volk_v_Circe.play_solo()
+
+        elif choice == "7":
+            Volk_v_Circe.create_new_zver()
 
         # непонятный пользовательский ввод
         else:
