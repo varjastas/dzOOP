@@ -8,12 +8,12 @@ class Zooferma:
         self.crit_sp = []
         for i in range(0, kol_zver):
             name = input('Введите имя зверя')
-            crit_sp.append(Critter(name))
+            self.crit_sp.append(Critter(name))
+
     def create_new_zver(self):
         name = input('Ввеите имя зверушки')
         if (name != '') and (name != ' '):
-            Criter = Critter(name)
-            self.crit_sp.append(Criter)
+            self.crit_sp.append( Critter(name))
         else:
             print('Имя не может быть пустой строкой')
     
@@ -22,18 +22,15 @@ class Zooferma:
         eat = int(input('Сколько дать есть. 1 = 100г'))
         self.crit_sp[number].eat(eat)
 
-
     def feed_all(self):
         eat = int(input('Сколько дать есть. 1 = 100г'))
         for i in self.crit_sp:
             i.eat(eat)
 
-
     def play_solo(self):
         number = int(input('Введите номер зверушки(начиная с 0)'))
         play = int(input('Сколько играть. 1 = 5 мин'))
         self.crit_sp[number].play(play)
-
 
     def play_all(self):
         play = int(input('Сколько играть. 1 = 5 мин'))
@@ -45,6 +42,7 @@ class Zooferma:
         self.crit_sp[number].talk()
         
     def talk_all(self):
+
         for i in self.crit_sp:
             i.talk()
 class Critter:
@@ -112,9 +110,7 @@ class Critter:
             self.boredom = 0
         self.__pass_time()
 
-crit_sp = []
 def main():
-    print(crit_sp)
     choice = None  
     Volk_v_Circe = Zooferma(int(input('Начальное кол-во зверей'))) 
     while choice != "0":
